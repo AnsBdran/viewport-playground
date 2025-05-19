@@ -22,3 +22,5 @@ export const DEVICES = [
     {id: 'ipad-air',             name: 'iPad Air',                      width: 820,  height: 1180, aspect_ratio: '7:10',   type: 'tablet'},
     {id: 'ipad-pro',             name: 'iPad Pro 12.9"',                width: 1024, height: 1366, aspect_ratio: '3:4',    type: 'tablet'},
 ]
+
+export const TOOLBAR_HEIGHT = 50;
