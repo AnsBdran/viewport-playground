@@ -43,25 +43,22 @@
 {#if viewport_dev_state.is_dev_mode}
 	<main>
 		<Toolbar />
-		<div
-			class="flex items-center"
-			style="height: calc(100vh - {TOOLBAR_HEIGHT}px); margin-top: {TOOLBAR_HEIGHT}px"
-		>
+		<div style="height: calc(100vh - {TOOLBAR_HEIGHT}px); margin-top: {TOOLBAR_HEIGHT}px">
 			{#if wrapper === 'iframe'}
 				<iframe
 					src="/"
 					{height}
 					title="viewport playground"
 					frameborder="0"
-					class="mx-auto mt-1 rounded-2xl border-6 border-gray-700 shadow-[0_10px_35px_rgba(0,0,0,0.45)] ring-offset-8 ring-offset-transparent dark:border-gray-400"
-					style="max-height: calc(100vh - {TOOLBAR_HEIGHT}px); min-width: {width}px; scrollbar-width: none; -ms-overflow-style: none;"
+					class="frame"
+					style="max-height: calc(100vh - {TOOLBAR_HEIGHT}px); min-width: {width}px;"
 					onload={handleIframeLoad}
 				>
 					{@render children()}
 				</iframe>
 			{:else}
 				<div
-					class="overflowY-scroll overflowX-hidden mx-auto mt-1 rounded-2xl border-6 border-gray-700 shadow-[0_10px_35px_rgba(0,0,0,0.45)] ring-offset-8 ring-offset-transparent dark:border-gray-400"
+					class="frame"
 					style="max-height: calc(100vh - {TOOLBAR_HEIGHT}px); min-width: {width}px; scrollbar-width: none; -ms-overflow-style: none; height: {height}px; contain: content"
 				>
 					{@render children()}
@@ -72,3 +69,14 @@
 {:else}
 	{@render children()}
 {/if}
+
+<style>
+	.frame {
+		overflow-y: scroll;
+		overflow-x: hidden;
+		margin-inline: auto;
+		border-radius: 16px;
+		border: 6px solid #364153;
+		box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45);
+	}
+</style>

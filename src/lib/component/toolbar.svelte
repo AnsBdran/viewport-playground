@@ -10,7 +10,7 @@
 </div>
 
 {#snippet content()}
-	<div class="flex h-full items-center justify-center gap-3 py-1">
+	<div>
 		<Select
 			options={DEVICES.map((d) => ({
 				label: `${d.name} (${d.aspect_ratio})`,
@@ -31,3 +31,14 @@
 		</Button>
 	</div>
 {/snippet}
+
+<style>
+	div {
+		display: flex;
+		height: 100%;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		padding-block: 0.25rem;
+	}
+</style>
