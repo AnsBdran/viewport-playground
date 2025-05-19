@@ -2,7 +2,7 @@
 	import { DEVICES, TOOLBAR_HEIGHT } from './consts';
 	import { viewport_dev_state } from './state.svelte';
 	import Toolbar from './toolbar.svelte';
-
+	import { goto } from '$app/navigation';
 	const { children } = $props();
 	const device = $derived(DEVICES.find((d) => d.id === viewport_dev_state.device_id));
 	const width = $derived(viewport_dev_state.orientation === 'l' ? device?.height : device?.width);
@@ -42,8 +42,9 @@
 			class="flex items-center"
 			style="height: calc(100vh - {TOOLBAR_HEIGHT}px); margin-top: {TOOLBAR_HEIGHT}px"
 		>
+			<!-- src="./index.html" -->
+			<!-- src="" -->
 			<iframe
-				src="./index.html"
 				{height}
 				title="viewport playground"
 				frameborder="0"
