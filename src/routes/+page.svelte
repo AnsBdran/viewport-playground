@@ -1,5 +1,5 @@
 <script>
-	import { ViewportPlayground, enter_dev_mode } from '$lib/component';
+	import { enter_dev_mode } from '$lib/component';
 	import { Button } from '$lib/ui';
 </script>
 

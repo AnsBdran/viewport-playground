@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ViewportPlayground from '$lib/component/viewport-playground.svelte';
+	import { ViewportPlayground } from '$lib/component';
 	import '../app.css';
 
 	let { children } = $props();

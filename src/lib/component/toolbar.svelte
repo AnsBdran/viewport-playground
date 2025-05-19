@@ -10,7 +10,7 @@
 </div>
 
 {#snippet content()}
-	<div class="bg-background flex h-full items-center justify-center gap-3 py-1">
+	<div class="flex h-full items-center justify-center gap-3 py-1">
 		<Select
 			options={DEVICES.map((d) => ({
 				label: `${d.name} (${d.aspect_ratio})`,
