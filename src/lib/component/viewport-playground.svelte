@@ -39,8 +39,8 @@
 		<Toolbar />
 		<div class="flex items-center" style=" margin-top: {TOOLBAR_HEIGHT}px">
 			<div
-				class="mx-auto mt-1 overflow-scroll rounded-2xl border-6 border-gray-700 shadow-[0_10px_35px_rgba(0,0,0,0.45)] ring-offset-8 ring-offset-transparent dark:border-gray-400"
-				style="max-height: calc(100vh - {TOOLBAR_HEIGHT}px); width: {width}px; scrollbar-width: none; -ms-overflow-style: none; height: {height}px; contain: layout"
+				class="overflowY-scroll overflowX-hidden mx-auto mt-1 rounded-2xl border-6 border-gray-700 shadow-[0_10px_35px_rgba(0,0,0,0.45)] ring-offset-8 ring-offset-transparent dark:border-gray-400"
+				style="max-height: calc(100vh - {TOOLBAR_HEIGHT}px); width: {width}px; scrollbar-width: none; -ms-overflow-style: none; height: {height}px; contain: content"
 			>
 				{@render children()}
 			</div>
