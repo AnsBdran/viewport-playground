@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enter_dev_mode, ViewportPlayground } from '$lib/component';
+	import { enterPlayground, ViewportPlayground } from '$lib/component';
 	import '../app.css';
 	import Nav from './nav.svelte';
 
@@ -14,7 +14,7 @@
 	<main class="mt-16">
 		<a href="/about">About</a>
 		<a href="/">Home</a>
-		<button onclick={enter_dev_mode}> dev </button>
+		<button onclick={enterPlayground}> dev </button>
 		{@render children()}
 		<Nav />
 	</main>

@@ -1,7 +1,7 @@
 <script>
 	import { Select, Button, rotateIcon, exitIcon } from '$lib/ui';
 	import { DEVICES, TOOLBAR_HEIGHT } from './consts';
-	import { exit_dev_mode } from './index.js';
+	import { exitPlayground } from './index.js';
 	import { viewport_dev_state } from './state.svelte.js';
 </script>
 
@@ -26,7 +26,7 @@
 		>
 			{@render rotateIcon()}
 		</Button>
-		<Button size="icon" onclick={exit_dev_mode}>
+		<Button size="icon" onclick={exitPlayground}>
 			{@render exitIcon()}
 		</Button>
 	</div>
