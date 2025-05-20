@@ -5,7 +5,7 @@
 	import Toolbar from './toolbar.svelte';
 
 	type Props = {
-		wrapper: 'iframe' | 'div';
+		wrapper?: 'iframe' | 'div';
 		children: Snippet;
 	};
 
