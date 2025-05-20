@@ -7,7 +7,7 @@
 	}: { children: any; size: 'normal' | 'icon' } & HTMLButtonAttributes = $props();
 </script>
 
-<button type="button" class:icon={size === 'icon'} class:normal={size === 'normal'} {...rest}>
+<button type="button" class:vp-icon={size === 'icon'} class:vp-normal={size === 'normal'} {...rest}>
 	{@render children()}
 </button>
 
@@ -30,7 +30,7 @@
 		outline: 1px solid transparent;
 	}
 
-	.icon {
+	.vp-icon {
 		width: 36px;
 		height: 36px;
 		display: flex;
@@ -38,11 +38,11 @@
 		justify-content: center;
 	}
 
-	.icon :global(svg) {
+	.vp-icon :global(svg) {
 		width: 24px;
 		height: 24px;
 	}
-	.normal {
+	.vp-normal {
 		padding: 7px 16px;
 		min-height: 36px;
 		min-width: 36px;
