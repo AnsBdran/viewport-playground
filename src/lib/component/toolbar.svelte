@@ -5,27 +5,25 @@
 	import { viewport_dev_state } from './state.svelte.js';
 </script>
 
-<div class="fixed top-0 z-9999 w-full" style="height: {TOOLBAR_HEIGHT}px;">
-	<div>
-		<Select
-			options={DEVICES.map((d) => ({
-				label: `${d.name} (${d.aspect_ratio})`,
-				value: d.id
-			}))}
-			bind:value={viewport_dev_state.device_id}
-		/>
-		<Button
-			onclick={() => {
-				viewport_dev_state.orientation = viewport_dev_state.orientation === 'p' ? 'l' : 'p';
-			}}
-			size="icon"
-		>
-			{@render rotateIcon()}
-		</Button>
-		<Button size="icon" onclick={exitPlayground}>
-			{@render exitIcon()}
-		</Button>
-	</div>
+<div class="fixed top-0 w-full" style="height: {TOOLBAR_HEIGHT}px;">
+	<Select
+		options={DEVICES.map((d) => ({
+			label: `${d.name} (${d.aspect_ratio})`,
+			value: d.id
+		}))}
+		bind:value={viewport_dev_state.device_id}
+	/>
+	<Button
+		onclick={() => {
+			viewport_dev_state.orientation = viewport_dev_state.orientation === 'p' ? 'l' : 'p';
+		}}
+		size="icon"
+	>
+		{@render rotateIcon()}
+	</Button>
+	<Button size="icon" onclick={exitPlayground}>
+		{@render exitIcon()}
+	</Button>
 </div>
 
 <style>
