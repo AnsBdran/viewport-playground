@@ -6,10 +6,6 @@
 </script>
 
 <div class="fixed top-0 z-9999 w-full" style="height: {TOOLBAR_HEIGHT}px;">
-	{@render content()}
-</div>
-
-{#snippet content()}
 	<div>
 		<Select
 			options={DEVICES.map((d) => ({
@@ -30,7 +26,7 @@
 			{@render exitIcon()}
 		</Button>
 	</div>
-{/snippet}
+</div>
 
 <style>
 	div {

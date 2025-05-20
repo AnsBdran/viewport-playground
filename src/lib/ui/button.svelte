@@ -24,10 +24,10 @@
 		font-weight: 500;
 		font-size: 14px;
 		box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px;
-		&:hover {
-			background: #f6f6f7;
-			outline: 1px solid transparent;
-		}
+	}
+	button:hover {
+		background: #f6f6f7;
+		outline: 1px solid transparent;
 	}
 
 	.icon {
