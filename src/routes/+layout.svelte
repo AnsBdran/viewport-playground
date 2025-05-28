@@ -11,9 +11,11 @@
 		<span>header</span>
 		<span>icon</span>
 	</header>
-	<main class="mt-16">
+	<nav class="mt-16">
 		<a href="/about">About</a>
 		<a href="/">Home</a>
+	</nav>
+	<main>
 		<button onclick={enterPlayground}> dev </button>
 		{@render children()}
 		<Nav />
