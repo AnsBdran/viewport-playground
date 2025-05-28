@@ -1,14 +1,16 @@
-export const viewport_dev_state = $state<{
-	is_dev_mode: boolean;
+export const viewportState = $state<{
+	isActive: boolean;
 	orientation: 'p' | 'l';
-	device_id: string;
+	deviceId: string;
 	wrapper: 'iframe' | 'div';
+	iframeUrl: string;
 }>({
-	is_dev_mode: false,
+	isActive: false,
 	// self === top &&
 	// !location.hostname.includes('localhost') &&
 	// matchMedia('(pointer: fine)').matches,
 	orientation: 'l', // p => portrait || l => landscape
-	device_id: 'ipad-mini',
-	wrapper: 'iframe'
+	deviceId: 'ipad-mini',
+	wrapper: 'iframe',
+	iframeUrl: '/'
 });

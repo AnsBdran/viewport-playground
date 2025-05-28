@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { DEVICES, TOOLBAR_HEIGHT } from './consts';
-	import { viewport_dev_state } from './state.svelte.js';
+	import { viewportState } from './state.svelte.js';
 	import Toolbar from './toolbar.svelte';
 
 	type Props = {
@@ -11,13 +11,15 @@
 
 	const { children, wrapper = 'iframe' }: Props = $props();
 
-	const device = $derived(DEVICES.find((d) => d.id === viewport_dev_state.device_id));
-	const width = $derived(viewport_dev_state.orientation === 'l' ? device?.height : device?.width);
-	const height = $derived(viewport_dev_state.orientation === 'p' ? device?.height : device?.width);
+	const device = $derived(DEVICES.find((d) => d.id === viewportState.deviceId));
+	const width = $derived(viewportState.orientation === 'l' ? device?.height : device?.width);
+	const height = $derived(viewportState.orientation === 'p' ? device?.height : device?.width);
 
-	function handleIframeLoad(event) {
-		const iframe = event.target;
-		const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+	function handleIframeLoad(event: Event) {
+		const iframe = event.target as HTMLIFrameElement;
+		const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+
+		if (!iframeDoc) return;
 
 		const style = iframeDoc.createElement('style');
 		style.textContent = `
@@ -40,13 +42,13 @@
 	}
 </script>
 
-{#if viewport_dev_state.is_dev_mode}
+{#if viewportState.isActive}
 	<main>
 		<Toolbar />
 		<div style="height: calc(100vh - {TOOLBAR_HEIGHT}px); margin-top: {TOOLBAR_HEIGHT}px">
 			{#if wrapper === 'iframe'}
 				<iframe
-					src="/"
+					src={viewportState.iframeUrl}
 					{height}
 					title="viewport playground"
 					frameborder="0"

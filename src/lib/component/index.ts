@@ -1,4 +1,4 @@
-import { viewport_dev_state } from './state.svelte';
+import { viewportState } from './state.svelte';
 import ViewportPlayground from './viewport-playground.svelte';
 
 const enterPlayground = async () => {
@@ -6,12 +6,12 @@ const enterPlayground = async () => {
 		alert('Already Instanciated');
 		return;
 	}
-	viewport_dev_state.is_dev_mode = true;
+	viewportState.isActive = true;
 };
-const isPlaygroundOpen = () => viewport_dev_state.is_dev_mode;
+const isPlaygroundOpen = () => viewportState.isActive;
 
 const exitPlayground = async () => {
-	viewport_dev_state.is_dev_mode = false;
+	viewportState.isActive = false;
 };
 
 // library exports

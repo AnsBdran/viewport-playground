@@ -1,8 +1,8 @@
 <script>
-	import { Select, Button, rotateIcon, exitIcon } from '$lib/ui';
+	import { Select, Button, rotateIcon, exitIcon, Input } from '$lib/ui';
 	import { DEVICES, TOOLBAR_HEIGHT } from './consts';
 	import { exitPlayground } from './index.js';
-	import { viewport_dev_state } from './state.svelte.js';
+	import { viewportState } from './state.svelte.js';
 </script>
 
 <div class="fixed top-0 w-full" style="height: {TOOLBAR_HEIGHT}px;">
@@ -11,11 +11,12 @@
 			label: `${d.name} (${d.aspect_ratio})`,
 			value: d.id
 		}))}
-		bind:value={viewport_dev_state.device_id}
+		bind:value={viewportState.deviceId}
 	/>
+	<Input placeholder="enter a url" dir="ltr" type="text" bind:value={viewportState.iframeUrl} />
 	<Button
 		onclick={() => {
-			viewport_dev_state.orientation = viewport_dev_state.orientation === 'p' ? 'l' : 'p';
+			viewportState.orientation = viewportState.orientation === 'p' ? 'l' : 'p';
 		}}
 		size="icon"
 	>
