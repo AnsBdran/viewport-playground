@@ -14,3 +14,25 @@ export const viewportState = $state<{
 	wrapper: 'iframe',
 	iframeUrl: '/'
 });
+
+// export class ViewportPlayground {
+// 	state = $state<{
+// 		isActive: boolean;
+// 		orientation: 'p' | 'l';
+// 		deviceId: string;
+// 		wrapper: 'iframe' | 'div';
+// 		iframeUrl: string;
+// 	}>({
+// 		isActive: false,
+// 		orientation: 'l',
+// 		deviceId: 'ipad-mini',
+// 		wrapper: 'iframe',
+// 		iframeUrl: '/'
+// 	});
+
+// 	constructor(defaultOpen: boolean) {
+// 		if (defaultOpen) {
+// 			this.state.isActive = true;
+// 		}
+// 	}
+// }

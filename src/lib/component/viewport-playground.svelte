@@ -1,15 +1,20 @@
+<script module>
+</script>
+
 <script lang="ts">
-	import type { Snippet } from 'svelte';
+	import { onMount, type Snippet } from 'svelte';
 	import { DEVICES, TOOLBAR_HEIGHT } from './consts';
 	import { viewportState } from './state.svelte.js';
 	import Toolbar from './toolbar.svelte';
+	import { enterPlayground } from '.';
 
 	type Props = {
 		wrapper?: 'iframe' | 'div';
 		children: Snippet;
+		defaultOpen?: boolean;
 	};
 
-	const { children, wrapper = 'iframe' }: Props = $props();
+	const { children, defaultOpen = false, wrapper = 'iframe' }: Props = $props();
 
 	const device = $derived(DEVICES.find((d) => d.id === viewportState.deviceId));
 	const width = $derived(viewportState.orientation === 'l' ? device?.height : device?.width);
@@ -25,12 +30,12 @@
 		style.textContent = `
         ::-webkit-scrollbar {
             display: none !important;
-        }
-        * {
-            scrollbar-width: none !important;
-            -ms-overflow-style: none !important;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="red" stroke="black" stroke-width="1"/></svg>') 8 8, auto;
-        }
+			}
+			* {
+				scrollbar-width: none !important;
+				-ms-overflow-style: none !important;
+				cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="red" stroke="black" stroke-width="1"/></svg>') 8 8, auto;
+				}
         html, body {
             overflow: auto !important;
             scrollbar-width: none !important;
@@ -40,6 +45,12 @@
 
 		iframeDoc.head.appendChild(style);
 	}
+
+	onMount(() => {
+		if (defaultOpen) {
+			enterPlayground();
+		}
+	});
 </script>
 
 {#if viewportState.isActive}
