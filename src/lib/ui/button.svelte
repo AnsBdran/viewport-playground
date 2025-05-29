@@ -4,7 +4,7 @@
 		children,
 		size = 'normal',
 		...rest
-	}: { children: any; size: 'normal' | 'icon' } & HTMLButtonAttributes = $props();
+	}: { children: any; size?: 'normal' | 'icon' } & HTMLButtonAttributes = $props();
 </script>
 
 <button type="button" class:vp-icon={size === 'icon'} class:vp-normal={size === 'normal'} {...rest}>
