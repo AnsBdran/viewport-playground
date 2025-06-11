@@ -1,8 +1,8 @@
 <script>
 	import { Select, Button, rotateIcon, exitIcon, Input } from '$lib/ui';
 	import { DEVICES, TOOLBAR_HEIGHT } from './consts';
-	import { exitPlayground } from './index.js';
-	import { viewportState } from './state.svelte.js';
+	import { getContext } from 'svelte';
+	const viewportState = getContext('viewportState');
 </script>
 
 <div class="fixed top-0 w-full" style="height: {TOOLBAR_HEIGHT}px;">
@@ -22,7 +22,7 @@
 	>
 		{@render rotateIcon()}
 	</Button>
-	<Button size="icon" onclick={exitPlayground}>
+	<Button size="icon" onclick={() => (viewportState.isActive = false)}>
 		{@render exitIcon()}
 	</Button>
 </div>

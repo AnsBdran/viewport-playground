@@ -1,20 +1,36 @@
 <script module>
+	export function enterPlayground() {
+		console.log('enterPlayground');
+	}
 </script>
 
 <script lang="ts">
-	import { onMount, type Snippet } from 'svelte';
+	import { onMount, type Snippet, setContext } from 'svelte';
 	import { DEVICES, TOOLBAR_HEIGHT } from './consts';
-	import { viewportState } from './state.svelte.js';
 	import Toolbar from './toolbar.svelte';
-	import { enterPlayground } from '.';
 
 	type Props = {
 		wrapper?: 'iframe' | 'div';
 		children: Snippet;
 		defaultOpen?: boolean;
+		defaultRoute?: string;
 	};
 
-	const { children, defaultOpen = false, wrapper = 'iframe' }: Props = $props();
+	const { children, defaultOpen = false, wrapper = 'iframe', defaultRoute = '/' }: Props = $props();
+	const viewportState = $state<{
+		isActive: boolean;
+		orientation: 'p' | 'l';
+		deviceId: string;
+		wrapper: 'iframe' | 'div';
+		iframeUrl: string;
+	}>({
+		isActive: false,
+		orientation: 'l', // p => portrait || l => landscape
+		deviceId: 'ipad-mini',
+		wrapper: 'iframe',
+		iframeUrl: defaultRoute
+	});
+	setContext('viewportState', viewportState);
 
 	const device = $derived(DEVICES.find((d) => d.id === viewportState.deviceId));
 	const width = $derived(viewportState.orientation === 'l' ? device?.height : device?.width);
@@ -47,8 +63,8 @@
 	}
 
 	onMount(() => {
-		if (defaultOpen) {
-			enterPlayground();
+		if (defaultOpen && top === self) {
+			viewportState.isActive = true;
 		}
 	});
 </script>
