@@ -1,3 +1,12 @@
+export const enterPlayground = () => {
+	if (self !== top) return;
+	viewportState.isActive = true;
+};
+export const exitPlayground = () => {
+	console.log('exit');
+	viewportState.isActive = false;
+};
+
 export const viewportState = $state<{
 	isActive: boolean;
 	orientation: 'p' | 'l';

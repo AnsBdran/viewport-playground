@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ViewportPlayground } from '$lib/component';
+	import { ViewportPlayground, enterPlayground } from '$lib/component';
 	import { Button } from '$lib/ui';
 	import '../app.css';
 	import Nav from './nav.svelte';
@@ -21,7 +21,7 @@
 	<main>
 		<Button
 			onclick={() => {
-				viewportState.isActive = true;
+				enterPlayground();
 			}}>enter dev mode</Button
 		>
 		{@render children()}
