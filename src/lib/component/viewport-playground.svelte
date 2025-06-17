@@ -23,7 +23,9 @@
 	setContext('viewportState', viewportState);
 	$effect(() => {
 		viewportState.iframeUrl = defaultRoute;
-		viewportState.isActive = !disabled;
+		if (disabled) {
+			viewportState.isActive = false;
+		}
 	});
 
 	const device = $derived(DEVICES.find((d) => d.id === viewportState.deviceId));
