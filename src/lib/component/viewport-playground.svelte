@@ -9,18 +9,21 @@
 		children: Snippet;
 		defaultOpen?: boolean;
 		defaultRoute?: string;
+		disabled: boolean;
 	};
 
 	const {
 		children,
 		defaultOpen = false,
 		wrapper = 'iframe',
-		defaultRoute = $bindable('/')
+		defaultRoute = $bindable('/'),
+		disabled
 	}: Props = $props();
 
 	setContext('viewportState', viewportState);
 	$effect(() => {
 		viewportState.iframeUrl = defaultRoute;
+		viewportState.isActive = !disabled;
 	});
 
 	const device = $derived(DEVICES.find((d) => d.id === viewportState.deviceId));
