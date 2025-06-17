@@ -11,7 +11,12 @@
 		defaultRoute?: string;
 	};
 
-	const { children, defaultOpen = false, wrapper = 'iframe', defaultRoute = '/' }: Props = $props();
+	const {
+		children,
+		defaultOpen = false,
+		wrapper = 'iframe',
+		defaultRoute = $bindable('/')
+	}: Props = $props();
 
 	setContext('viewportState', viewportState);
 	onMount(() => {
