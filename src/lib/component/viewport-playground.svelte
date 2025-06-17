@@ -19,7 +19,7 @@
 	}: Props = $props();
 
 	setContext('viewportState', viewportState);
-	onMount(() => {
+	$effect(() => {
 		viewportState.iframeUrl = defaultRoute;
 	});
 
