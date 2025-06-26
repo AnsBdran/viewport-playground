@@ -22,7 +22,13 @@
 
 	setContext('viewportState', viewportState);
 	$effect(() => {
+		if (defaultOpen) {
+			// check if the current path is the same as default
+			viewportState.iframeUrl = window.location.pathname;
+		} else {
 		viewportState.iframeUrl = defaultRoute;
+		}
+
 		if (disabled) {
 			viewportState.isActive = false;
 		}
