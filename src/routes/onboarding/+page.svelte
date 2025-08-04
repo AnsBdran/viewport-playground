@@ -1,1 +1,1 @@
-<h1>onboarding</h1>
+<h1>Onboarding page</h1>

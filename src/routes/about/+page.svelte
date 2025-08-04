@@ -1,2 +1,1 @@
-<h1>About</h1>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+<h1>About page</h1>

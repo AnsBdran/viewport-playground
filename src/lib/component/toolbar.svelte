@@ -14,6 +14,7 @@
 		bind:value={viewportState.deviceId}
 	/>
 	<Input placeholder="enter a url" dir="ltr" type="text" bind:value={viewportState.iframeUrl} />
+	{viewportState.iframeUrl}
 	<Button
 		onclick={() => {
 			viewportState.orientation = viewportState.orientation === 'p' ? 'l' : 'p';

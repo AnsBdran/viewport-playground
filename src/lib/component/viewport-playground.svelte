@@ -3,12 +3,12 @@
 	import { DEVICES, TOOLBAR_HEIGHT } from './consts';
 	import Toolbar from './toolbar.svelte';
 	import { viewportState } from './utils.svelte';
-
+	import { MediaQuery } from 'svelte/reactivity';
 	type Props = {
 		wrapper?: 'iframe' | 'div';
 		children: Snippet;
 		defaultOpen?: boolean;
-		defaultRoute?: string;
+		url?: string;
 		disabled: boolean;
 	};
 
@@ -16,14 +16,16 @@
 		children,
 		defaultOpen = false,
 		wrapper = 'iframe',
-		defaultRoute = $bindable('/'),
+		url = $bindable('/'),
+		disabledOnMobile = true,
 		disabled
 	}: Props = $props();
 
 	setContext('viewportState', viewportState);
 	$effect(() => {
+		console.log('weird effect ran');
 		if (!defaultOpen) {
-			viewportState.iframeUrl = defaultRoute;
+			viewportState.iframeUrl = url;
 		}
 		if (viewportState.isActive) {
 			viewportState.iframeUrl = window.location.pathname;
@@ -63,9 +65,17 @@
 		iframeDoc.head.appendChild(style);
 	}
 
+	const large = new MediaQuery('min-width: 800px');
+
 	onMount(() => {
-		if (defaultOpen && top === self) {
+		if (defaultOpen && top === self && large) {
 			viewportState.isActive = true;
+		}
+	});
+
+	$effect(() => {
+		if (!large.current && disabledOnMobile) {
+			viewportState.isActive = false;
 		}
 	});
 </script>

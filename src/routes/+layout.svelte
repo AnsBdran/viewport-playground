@@ -1,22 +1,29 @@
 <script lang="ts">
-	import { ViewportPlayground, enterPlayground } from '$lib/component';
+	import { page } from '$app/state';
+	import { ViewportPlayground, enterPlayground, viewportState } from '$lib/component';
 	import { Button } from '$lib/ui';
 	import '../app.css';
 	import Nav from './nav.svelte';
-	import { getContext } from 'svelte';
 	let { children } = $props();
-	const viewportState = getContext('viewportState');
-	console.log(viewportState);
+
+	$effect(() => {
+		if (page.url.pathname) {
+			viewportState.iframeUrl = page.url.pathname;
+			console.log('effect ran', page.url.pathname, viewportState.iframeUrl);
+		}
+	});
 </script>
 
-<ViewportPlayground defaultOpen={true} defaultRoute="/onboarding">
+<ViewportPlayground defaultOpen={true} url="/onboarding">
 	<header class="fixed top-0 right-0 left-0 z-9999 flex items-center justify-between bg-green-200">
 		<span>header</span>
 		<span>icon</span>
 	</header>
-	<nav class="mt-16">
+	<nav class="mt-16 flex gap-3 bg-gray-200 p-2">
 		<a href="/about">About</a>
 		<a href="/">Home</a>
+		<a href="/onboarding">Onboarding</a>
+		<a href="ms-settings:windowsupdate-optionalupdates">play</a>
 	</nav>
 	<main>
 		<Button
