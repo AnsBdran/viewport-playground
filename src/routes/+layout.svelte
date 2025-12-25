@@ -13,7 +13,14 @@
 	});
 </script>
 
-<ViewportPlayground defaultOpen={true} url="/onboarding">
+<ViewportPlayground
+	routes={[
+		{ label: 'الصفحة الرئيسية', href: '/' },
+		{ label: 'عنا', href: '/about' }
+	]}
+	defaultOpen={true}
+	url="/onboarding"
+>
 	<header class="fixed top-0 right-0 left-0 z-9999 flex items-center justify-between bg-green-200">
 		<span>header</span>
 		<span>icon</span>

@@ -24,6 +24,8 @@
 		font-weight: 500;
 		font-size: 14px;
 		box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px;
+		box-sizing: border-box;
+		font-family: sans-serif;
 	}
 	button:hover {
 		background: #f6f6f7;
@@ -36,6 +38,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		box-sizing: border-box;
 	}
 
 	.vp-icon :global(svg) {
@@ -46,5 +49,6 @@
 		padding: 7px 16px;
 		min-height: 36px;
 		min-width: 36px;
+		box-sizing: border-box;
 	}
 </style>

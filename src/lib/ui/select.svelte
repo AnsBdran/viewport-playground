@@ -19,6 +19,8 @@
 		border-radius: 6px;
 		outline: none;
 		min-width: 200px;
+		box-sizing: border-box;
+		font-family: sans-serif;
 	}
 	.vp-select:focus {
 		border-color: #aaa;

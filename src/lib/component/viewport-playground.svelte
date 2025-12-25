@@ -1,16 +1,21 @@
+<script module>
+	export type ComponentProps = {
+		wrapper?: 'iframe' | 'div';
+		children: Snippet;
+		defaultOpen?: boolean;
+		url?: string;
+		disabled?: boolean;
+		disabledOnMobile?: boolean;
+		routes?: { label: string; href: string }[];
+	};
+</script>
+
 <script lang="ts">
 	import { onMount, type Snippet, setContext } from 'svelte';
 	import { DEVICES, TOOLBAR_HEIGHT } from './consts';
 	import Toolbar from './toolbar.svelte';
 	import { viewportState } from './utils.svelte';
 	import { MediaQuery } from 'svelte/reactivity';
-	type Props = {
-		wrapper?: 'iframe' | 'div';
-		children: Snippet;
-		defaultOpen?: boolean;
-		url?: string;
-		disabled: boolean;
-	};
 
 	const {
 		children,
@@ -18,8 +23,9 @@
 		wrapper = 'iframe',
 		url = $bindable('/'),
 		disabledOnMobile = true,
-		disabled
-	}: Props = $props();
+		disabled,
+		routes
+	}: ComponentProps = $props();
 
 	setContext('viewportState', viewportState);
 	$effect(() => {
@@ -80,36 +86,52 @@
 </script>
 
 {#if viewportState.isActive}
-	<main>
-		<Toolbar />
-		<div style="height: calc(100vh - {TOOLBAR_HEIGHT}px); margin-top: {TOOLBAR_HEIGHT}px">
-			{#if wrapper === 'iframe'}
-				<iframe
-					src={viewportState.iframeUrl}
-					{height}
-					title="viewport playground"
-					frameborder="0"
-					class="frame"
-					style="max-height: calc(100vh - {TOOLBAR_HEIGHT}px); min-width: {width}px;"
-					onload={handleIframeLoad}
-				>
-					{@render children()}
-				</iframe>
-			{:else}
-				<div
-					class="frame"
-					style="max-height: calc(100vh - {TOOLBAR_HEIGHT}px); min-width: {width}px; scrollbar-width: none; -ms-overflow-style: none; height: {height}px; contain: content"
-				>
-					{@render children()}
-				</div>
-			{/if}
-		</div>
-	</main>
+	<div class="vwp-root">
+		<main>
+			<Toolbar {routes} />
+			<div class="frame-container">
+				{#if wrapper === 'iframe'}
+					<iframe
+						src={viewportState.iframeUrl}
+						{height}
+						title="viewport playground"
+						frameborder="0"
+						class="frame"
+						style="min-width: {width}px;"
+						onload={handleIframeLoad}
+					>
+						{@render children()}
+					</iframe>
+				{:else}
+					<div class="frame div-frame" style="min-width: {width}px; height: {height}px;">
+						{@render children()}
+					</div>
+				{/if}
+			</div>
+		</main>
+	</div>
 {:else}
 	{@render children()}
 {/if}
 
 <style>
+	.vwp-root {
+		all: initial;
+		display: block;
+		box-sizing: border-box;
+		font-family: sans-serif;
+	}
+
+	.frame-container {
+		height: calc(100vh - 50px);
+		margin-top: 50px;
+		overflow: auto;
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+		background: #f3f4f6;
+	}
+
 	.frame {
 		overflow-y: scroll;
 		overflow-x: hidden;
@@ -117,5 +139,13 @@
 		border-radius: 16px;
 		border: 6px solid #364153;
 		box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45);
+		max-height: calc(100vh - 50px);
+		background: white;
+	}
+
+	.div-frame {
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+		contain: content;
 	}
 </style>

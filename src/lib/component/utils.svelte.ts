@@ -6,13 +6,15 @@ export const exitPlayground = () => {
 	viewportState.isActive = false;
 };
 
-export const viewportState = $state<{
+export type State = {
 	isActive: boolean;
 	orientation: 'p' | 'l';
 	deviceId: string;
 	wrapper: 'iframe' | 'div';
 	iframeUrl: string;
-}>({
+}
+
+export const viewportState = $state<State>({
 	isActive: false,
 	orientation: 'l', // p => portrait || l => landscape
 	deviceId: 'ipad-mini',
