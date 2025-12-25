@@ -23,7 +23,6 @@
 
 	setContext('viewportState', viewportState);
 	$effect(() => {
-		console.log('weird effect ran');
 		if (!defaultOpen) {
 			viewportState.iframeUrl = url;
 		}
