@@ -9,7 +9,6 @@
 	$effect(() => {
 		if (page.url.pathname) {
 			viewportState.iframeUrl = page.url.pathname;
-			console.log('effect ran', page.url.pathname, viewportState.iframeUrl);
 		}
 	});
 </script>

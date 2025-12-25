@@ -3,7 +3,6 @@ export const enterPlayground = () => {
 	viewportState.isActive = true;
 };
 export const exitPlayground = () => {
-	console.log('exit');
 	viewportState.isActive = false;
 };
 
